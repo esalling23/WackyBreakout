@@ -7,24 +7,31 @@ using UnityEngine;
 /// </summary>
 public static class ConfigurationUtils
 {
+
+    #region Fields
+
+    static ConfigurationData configurationData;
+
+    #endregion
+
     #region Properties
-    
+
     /// <summary>
     /// Gets the paddle move units per second
     /// </summary>
     /// <value>paddle move units per second</value>
     public static float PaddleMoveUnitsPerSecond
     {
-        get { return 10; }
+        get { return configurationData.PaddleMoveUnitsPerSecond; }
     }
 
     /// <summary>
     /// Gets the force of the ball
     /// </summary>
     /// <value>ball force</value>
-    public static int BallImpulseForce
+    public static float BallImpulseForce
     {
-        get { return 200; }
+        get { return configurationData.BallImpulseForce; }
     }
 
     #endregion
@@ -34,7 +41,7 @@ public static class ConfigurationUtils
     /// </summary>
     public static void Initialize()
     {
-
+        configurationData = new ConfigurationData();
     }
 
 }

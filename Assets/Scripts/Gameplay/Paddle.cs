@@ -56,14 +56,32 @@ public class Paddle : MonoBehaviour
     }
 
     /// <summary>
+    /// Checks for a top collision vs on the side 
+    /// </summary>
+    /// <param name="coll"></param>
+    /// <returns></returns>
+    bool CheckTopCollision(Collision2D coll)
+    {
+        // Top collission?
+        if (coll.GetContact(0).point.y >= transform.position.y + halfColliderWidth - 0.5f)
+        {
+            print("top collision");
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
     /// Detects collision with a ball to aim the ball
     ///
-    /// 
+    /// Depending on the spot we hit the ball on the paddle, change the direction
+    /// of the ball
     /// </summary>
     /// <param name="coll">collision info</param>
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.CompareTag("Ball"))
+        // Is this the ball?
+        if (coll.gameObject.CompareTag("Ball") && CheckTopCollision(coll))
         {
             // calculate new ball direction
             // Calculate how far the ball hit from the center of the paddle
