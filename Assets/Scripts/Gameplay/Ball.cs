@@ -33,22 +33,37 @@ public class Ball : MonoBehaviour
             ConfigurationUtils.BallImpulseForce * Mathf.Sin(startingAngle)), ForceMode2D.Force);
     }
 
+    public void SetDirection(Vector2 direction)
+    {
+        // Set the velocity to the current speed (magnitude) times the new direction
+        body.velocity = body.velocity.magnitude * direction;
+    }
+
     /// <summary>
     /// Adds direction to bounces off the paddle, walls
     ///
     /// Original from https://answers.unity.com/questions/1687930/how-to-change-bouncing-direction.html
+    /// Modifications made to fit my needs
     /// </summary>
     /// <param name="collision"></param>
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        print("collided");
+    /// Left for learning purposes - this was originally written to prevent
+    /// up-and-down forever bouncing w/o direction
+    /// The `OnCollisionEnter2D` method in `Paddle.cs` was provided for the
+    /// assignment for the more specific purpose as described in it's comments. 
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    print("collided");
 
-        if (Mathf.Abs(body.velocity.x) <= 0.1 || Mathf.Abs(body.velocity.y) <= 0.1)
-        {
-            print(body.velocity);
-            float angle = Random.Range(0, 20f);
-            body.AddForce(new Vector2(ConfigurationUtils.BallImpulseForce * Mathf.Cos(angle),
-            ConfigurationUtils.BallImpulseForce * Mathf.Sin(angle)), ForceMode2D.Force);
-        }
-    }
+    //    // If the ball is bouncing straight up and down, let's add a new angle to it
+    //    if (Mathf.Abs(body.velocity.x) <= 0.1 || Mathf.Abs(body.velocity.y) <= 0.1)
+    //    {
+    //        print(body.velocity);
+    //        float angle = Random.Range(0, 20f);
+    //        body.AddForce(new Vector2(ConfigurationUtils.BallImpulseForce * Mathf.Cos(angle),
+    //        ConfigurationUtils.BallImpulseForce * Mathf.Sin(angle)), ForceMode2D.Force);
+    //    }
+    //}
+
+
+    
 }
