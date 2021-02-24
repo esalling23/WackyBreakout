@@ -7,10 +7,10 @@ using UnityEngine;
 /// </summary>
 public class Paddle : MonoBehaviour
 {
-    private Rigidbody2D body;
-    private Vector3 position;
-    private float horizontalInput;
-    private float halfWidth;
+    Rigidbody2D body;
+    Vector3 position;
+    float horizontalInput;
+    float halfWidth;
 
     // Start is called before the first frame update
     void Start()

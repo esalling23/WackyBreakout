@@ -18,6 +18,15 @@ public static class ConfigurationUtils
         get { return 10; }
     }
 
+    /// <summary>
+    /// Gets the force of the ball
+    /// </summary>
+    /// <value>ball force</value>
+    public static int BallImpulseForce
+    {
+        get { return 200; }
+    }
+
     #endregion
     
     /// <summary>
@@ -27,4 +36,5 @@ public static class ConfigurationUtils
     {
 
     }
+
 }

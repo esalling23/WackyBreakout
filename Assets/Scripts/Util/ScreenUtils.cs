@@ -75,6 +75,30 @@ public static class ScreenUtils
         }
     }
 
+    /// <summary>
+    /// Gets the width of the screen in world coordinates
+    /// </summary>
+    public static float ScreenWidth
+    {
+        get
+        {
+            CheckScreenSizeChanged();
+            return Mathf.Abs(screenRight - screenLeft);
+        }
+    }
+
+    /// <summary>
+    /// Gets the height of the screen in world coordinates
+    /// </summary>
+    public static float ScreenHeight
+    {
+        get
+        {
+            CheckScreenSizeChanged();
+            return Mathf.Abs(screenTop - screenBottom);
+        }
+    }
+
     #endregion
 
     #region Methods
