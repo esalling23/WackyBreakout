@@ -19,7 +19,6 @@ public static class ConfigurationUtils
     /// <summary>
     /// Gets the paddle move units per second
     /// </summary>
-    /// <value>paddle move units per second</value>
     public static float PaddleMoveUnitsPerSecond
     {
         get { return configurationData.PaddleMoveUnitsPerSecond; }
@@ -28,7 +27,6 @@ public static class ConfigurationUtils
     /// <summary>
     /// Gets the force of the ball
     /// </summary>
-    /// <value>ball force</value>
     public static float BallImpulseForce
     {
         get { return configurationData.BallImpulseForce; }
@@ -37,10 +35,25 @@ public static class ConfigurationUtils
     /// <summary>
     /// Gets the length of time a ball should live for
     /// </summary>
-    /// <value>ball death time</value>
     public static float BallDeathTime
     {
         get { return configurationData.BallDeathTime; }
+    }
+
+    /// <summary>
+    /// Gets the min length of time between ball spawns
+    /// </summary>
+    public static float BallSpawnTimeMin 
+    {
+        get { return configurationData.BallSpawnTimeMin; }
+    }
+
+    /// <summary>
+    /// Gets the max length of time between ball spawns
+    /// </summary>
+    public static float BallSpawnTimeMax
+    {
+        get { return configurationData.BallSpawnTimeMax; }
     }
 
     #endregion

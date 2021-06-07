@@ -17,6 +17,8 @@ public class ConfigurationData
     static float paddleMoveUnitsPerSecond = 10;
     static float ballImpulseForce = 200;
     static float ballDeathTime = 15;
+    static float ballSpawnTimeMin = 5;
+    static float ballSpawnTimeMax = 10;
 
     #endregion
 
@@ -45,11 +47,31 @@ public class ConfigurationData
     /// <summary>
     /// Gets the ball's life time length
     /// </summary>
-    /// <value>ball time time</value>
+    /// <value>ball death time</value>
     public float BallDeathTime
     {
         get { return ballDeathTime; }
         set { ballDeathTime = value; }
+    }
+
+    /// <summary>
+    /// Gets the minimum time between ball spawns
+    /// </summary>
+    /// <value>ball spawn time</value>
+    public float BallSpawnTimeMin
+    {
+        get { return ballSpawnTimeMin; }
+        set { ballSpawnTimeMin = value; }
+    }
+
+    /// <summary>
+    /// Gets the maximum time between ball spawns
+    /// </summary>
+    /// <value>ball spawn time</value>
+    public float BallSpawnTimeMax 
+    {
+        get { return ballSpawnTimeMax; }
+        set { ballSpawnTimeMax = value; }
     }
 
     #endregion
