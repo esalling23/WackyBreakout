@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Ball : MonoBehaviour
 {
+    #region Fields
     private Rigidbody2D body;
     private Timer deathTimer;
     private Timer startTimer;
@@ -16,6 +17,8 @@ public class Ball : MonoBehaviour
 
     [SerializeField]
     int damage = 50;
+
+    #endregion
 
     #region Properties
 
@@ -85,7 +88,7 @@ public class Ball : MonoBehaviour
     private void DestroyBall()
     {
         // Spawn a new ball before death
-        Camera.main.GetComponent<BallSpawner>().SpawnBall();
+        Camera.main.GetComponent<BallSpawner>().SpawnBallWithChecks();
         // Destroy this game object
         Destroy(gameObject);
     }

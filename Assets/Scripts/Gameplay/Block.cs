@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Block : MonoBehaviour
 {
+    #region Fields
     // Sprite for half-life state
     [SerializeField]
     Sprite brokenBlock;
@@ -16,6 +17,10 @@ public class Block : MonoBehaviour
 
     [SerializeField]
     int health = 100;
+
+    #endregion
+
+    #region Methods
 
     // Start is called before the first frame update
     void Start()
@@ -51,4 +56,6 @@ public class Block : MonoBehaviour
             }
         }
     }
+
+    #endregion
 }

@@ -7,11 +7,16 @@ using UnityEngine;
 /// </summary>
 public class Paddle : MonoBehaviour
 {
+    #region Fields
     Rigidbody2D body;
     Vector3 position;
     float horizontalInput;
     float halfColliderWidth;
     const float BounceAngleHalfRange = 60f * Mathf.Deg2Rad;
+
+    #endregion
+
+    #region Methods
 
     // Start is called before the first frame update
     void Start()
@@ -98,4 +103,6 @@ public class Paddle : MonoBehaviour
             ballScript.SetDirection(direction);
         }
     }
+    
+    #endregion
 }

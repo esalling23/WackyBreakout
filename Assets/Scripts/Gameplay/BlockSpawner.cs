@@ -10,11 +10,18 @@ using UnityEngine;
 /// </summary>
 public class BlockSpawner : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField]
     GameObject[] blocks;
 
     [SerializeField]
     int size = 4;
+
+    #endregion
+
+    #region Methods
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,9 +62,5 @@ public class BlockSpawner : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    #endregion
 }
