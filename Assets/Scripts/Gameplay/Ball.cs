@@ -45,9 +45,10 @@ public class Ball : MonoBehaviour
 
     void Update() 
     {
+        // If Ball has reached the end of it's lifetime, destroy it
         if (timer.Finished) 
         {
-            Destroy(gameObject);
+            DestroyBall();
         }
     }
 
@@ -59,6 +60,19 @@ public class Ball : MonoBehaviour
     
     private void OnBecameInvisible() 
     {
+        // Destroy ball when it leaves the screen view
+        DestroyBall();
+    }
+
+    /// <summary>
+    /// Destroys the ball - used in various situations
+    /// Spawns new ball before "death"
+    /// </summary>
+    private void DestroyBall()
+    {
+        // Spawn a new ball before death
+        Camera.main.GetComponent<BallSpawner>().SpawnBall();
+        // Destroy this game object
         Destroy(gameObject);
     }
 
