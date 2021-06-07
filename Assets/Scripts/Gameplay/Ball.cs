@@ -8,7 +8,8 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     private Rigidbody2D body;
-    private Timer timer;
+    private Timer deathTimer;
+    private Timer startTimer;
 
     [SerializeField]
     float startingAngle = 20f;
@@ -32,26 +33,37 @@ public class Ball : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
 
-        body.AddForce(new Vector2(ConfigurationUtils.BallImpulseForce * Mathf.Cos(startingAngle),
-            ConfigurationUtils.BallImpulseForce * Mathf.Sin(startingAngle)), ForceMode2D.Force);
-
         // Get timer component
-        timer = GetComponent<Timer>();
+        deathTimer = gameObject.AddComponent<Timer>();
+        startTimer = gameObject.AddComponent<Timer>();
 
         // Set duration to ball life time & run 
-        timer.Duration = ConfigurationUtils.BallDeathTime;
-        timer.Run();
+        deathTimer.Duration = ConfigurationUtils.BallDeathTime;
+        deathTimer.Run();
+
+        startTimer.Duration = 1;
+        startTimer.Run();
     }
 
     void Update() 
     {
+        if (startTimer.Finished) 
+        {
+            startTimer.Stop();
+            GetMoving();
+        }
         // If Ball has reached the end of it's lifetime, destroy it
-        if (timer.Finished) 
+        if (deathTimer.Finished) 
         {
             DestroyBall();
         }
     }
 
+    private void GetMoving() 
+    {
+        body.AddForce(new Vector2(ConfigurationUtils.BallImpulseForce * Mathf.Cos(startingAngle),
+            ConfigurationUtils.BallImpulseForce * Mathf.Sin(startingAngle)), ForceMode2D.Force);
+    }
     public void SetDirection(Vector2 direction)
     {
         // Set the velocity to the current speed (magnitude) times the new direction
@@ -60,8 +72,10 @@ public class Ball : MonoBehaviour
     
     private void OnBecameInvisible() 
     {
-        // Destroy ball when it leaves the screen view
-        DestroyBall();
+        if (transform.position.y <= ScreenUtils.ScreenBottom) {
+            // Destroy ball when it leaves the screen view
+            DestroyBall();
+        }
     }
 
     /// <summary>
