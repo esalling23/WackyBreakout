@@ -8,6 +8,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     private Rigidbody2D body;
+    private Timer timer;
 
     [SerializeField]
     float startingAngle = 20f;
@@ -24,6 +25,8 @@ public class Ball : MonoBehaviour
 
     #endregion
 
+    #region Methods
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +34,32 @@ public class Ball : MonoBehaviour
 
         body.AddForce(new Vector2(ConfigurationUtils.BallImpulseForce * Mathf.Cos(startingAngle),
             ConfigurationUtils.BallImpulseForce * Mathf.Sin(startingAngle)), ForceMode2D.Force);
+
+        // Get timer component
+        timer = GetComponent<Timer>();
+
+        // Set duration to ball life time & run 
+        timer.Duration = ConfigurationUtils.BallDeathTime;
+        timer.Run();
+    }
+
+    void Update() 
+    {
+        if (timer.Finished) 
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SetDirection(Vector2 direction)
     {
         // Set the velocity to the current speed (magnitude) times the new direction
         body.velocity = body.velocity.magnitude * direction;
+    }
+    
+    private void OnBecameInvisible() 
+    {
+        Destroy(gameObject);
     }
 
     /// <summary>
@@ -64,6 +87,6 @@ public class Ball : MonoBehaviour
     //    }
     //}
 
-
+    #endregion
     
 }

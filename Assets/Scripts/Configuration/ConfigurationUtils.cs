@@ -34,6 +34,15 @@ public static class ConfigurationUtils
         get { return configurationData.BallImpulseForce; }
     }
 
+    /// <summary>
+    /// Gets the length of time a ball should live for
+    /// </summary>
+    /// <value>ball death time</value>
+    public static float BallDeathTime
+    {
+        get { return configurationData.BallDeathTime; }
+    }
+
     #endregion
     
     /// <summary>
