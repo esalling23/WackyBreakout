@@ -1,2 +1,2 @@
-BallImpulseForce,PaddleMoveUnitsPerSecond,BallDeathTime,BallSpawnTimeMin,BallSpawnTimeMax
-150,20,15,5,10
+BallImpulseForce,PaddleMoveUnitsPerSecond,BallDeathTime,BallSpawnTimeMin,BallSpawnTimeMax,StandardBlockPoints
+150,20,15,5,10,50

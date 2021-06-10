@@ -19,6 +19,7 @@ public class ConfigurationData
     static float ballDeathTime = 15;
     static float ballSpawnTimeMin = 5;
     static float ballSpawnTimeMax = 10;
+    static float standardBlockPoints = 50;
 
     #endregion
 
@@ -72,6 +73,16 @@ public class ConfigurationData
     {
         get { return ballSpawnTimeMax; }
         set { ballSpawnTimeMax = value; }
+    }
+
+    /// <summary>
+    /// Gets the point value for standard blocks
+    /// </summary>
+    /// <value>point value</value>
+    public float StandardBlockPoints
+    {
+        get { return standardBlockPoints; }
+        set { standardBlockPoints = value; }
     }
 
     #endregion
