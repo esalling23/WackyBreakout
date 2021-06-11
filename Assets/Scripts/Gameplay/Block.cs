@@ -40,14 +40,12 @@ public class Block : MonoBehaviour
         // If the game object we collided w/ has a tag "Ball"
         if (collision.gameObject.tag == "Ball")
         {
-            // We've been hit
-            print("We've been hit!");
-
             // Reduce the block's health
             health -= collision.gameObject.GetComponent<Ball>().Damage;
 
             if (health <= 0)
             {
+                EventManager.TriggerEvent(EventName.AddPoints, new Dictionary<string, object> { { "points", points } });
                 Destroy(gameObject);
             }
             // If we're at the mid-way point in health (or over)

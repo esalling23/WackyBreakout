@@ -33,7 +33,7 @@ public class Paddle : MonoBehaviour
     {
         //  Horizontal axis is right/left arrow or a + d keys
         horizontalInput = Input.GetAxis("Horizontal");
-        if (horizontalInput != 0) 
+        if (!GameManager.instance.GameOver && horizontalInput != 0) 
         {
             position = transform.position;
             position.x += horizontalInput * ConfigurationUtils.PaddleMoveUnitsPerSecond * Time.fixedDeltaTime;
@@ -70,7 +70,6 @@ public class Paddle : MonoBehaviour
         // Top collission?
         if (coll.GetContact(0).point.y >= transform.position.y + halfColliderWidth - 0.5f)
         {
-            print("top collision");
             return true;
         }
         return false;

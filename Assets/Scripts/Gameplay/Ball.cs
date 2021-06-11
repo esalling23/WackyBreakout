@@ -36,6 +36,8 @@ public class Ball : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
 
+        EventManager.StartListening(EventName.GameOver, StopMoving);
+
         // Get timer component
         deathTimer = gameObject.AddComponent<Timer>();
         startTimer = gameObject.AddComponent<Timer>();
@@ -62,17 +64,39 @@ public class Ball : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stops ball movement
+    /// </summary>
+    /// <param name="msg">null</param>
+    private void StopMoving(Dictionary<string, object> msg) 
+    {
+        body.velocity = Vector3.zero;
+    }
+
+    /// <summary>
+    /// Adds force to the ball
+    /// </summary>
     private void GetMoving() 
     {
-        body.AddForce(new Vector2(ConfigurationUtils.BallImpulseForce * Mathf.Cos(startingAngle),
-            ConfigurationUtils.BallImpulseForce * Mathf.Sin(startingAngle)), ForceMode2D.Force);
+        Vector2 force = new Vector2(ConfigurationUtils.BallImpulseForce * Mathf.Cos(startingAngle),
+            ConfigurationUtils.BallImpulseForce * Mathf.Sin(startingAngle));
+
+        body.AddForce(force, ForceMode2D.Force);
     }
+
+    /// <summary>
+    /// Sets ball velocity and direction
+    /// </summary>
+    /// <param name="direction">Vector for direction</param>
     public void SetDirection(Vector2 direction)
     {
         // Set the velocity to the current speed (magnitude) times the new direction
         body.velocity = body.velocity.magnitude * direction;
     }
     
+    /// <summary>
+    /// If the ball leaves the screen, destroy it
+    /// </summary>
     private void OnBecameInvisible() 
     {
         if (transform.position.y <= ScreenUtils.ScreenBottom) {
@@ -87,8 +111,18 @@ public class Ball : MonoBehaviour
     /// </summary>
     private void DestroyBall()
     {
-        // Spawn a new ball before death
-        Camera.main.GetComponent<BallSpawner>().SpawnBallWithChecks();
+        // Trigger lost ball event
+        EventManager.TriggerEvent(EventName.LoseBall, null);
+
+        // Stop listening for Game Over event
+        EventManager.StopListening(EventName.GameOver, StopMoving);
+
+        if (!GameManager.instance.GameOver) 
+        {
+            // Spawn a new ball before death
+            Camera.main.GetComponent<BallSpawner>().SpawnBallWithChecks();
+        }
+
         // Destroy this game object
         Destroy(gameObject);
     }

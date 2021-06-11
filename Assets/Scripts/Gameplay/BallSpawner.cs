@@ -37,7 +37,7 @@ public class BallSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (retrySpawn || spawnTimer.Finished) 
+        if (!GameManager.instance.GameOver && (retrySpawn || spawnTimer.Finished))
         {
             retrySpawn = false;
             SpawnBallWithChecks();
