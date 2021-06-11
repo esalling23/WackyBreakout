@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1337611944430951771}
   - component: {fileID: 1337611944430951768}
-  - component: {fileID: 1337611944430951769}
   - component: {fileID: 1337611944430951770}
+  - component: {fileID: -3592762294876768750}
   m_Layer: 0
-  m_Name: GreenBlock
+  m_Name: StandardBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,21 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1337611944430951769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337611944430951774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0addb69fd8af49dab74c21d5868bd36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brokenBlock: {fileID: -6452159803162269696, guid: 89f4c4c5f504b43689c31e611d23109a,
-    type: 3}
-  health: 100
 --- !u!61 &1337611944430951770
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,3 +110,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.014415, y: 0.7111707}
   m_EdgeRadius: 0
+--- !u!114 &-3592762294876768750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337611944430951774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7109387106244e2bbd8fa9d52b5d81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  standardBlockSprites:
+  - {fileID: -5914466028011840570, guid: 89f4c4c5f504b43689c31e611d23109a, type: 3}
+  - {fileID: -6307478181010665839, guid: 89f4c4c5f504b43689c31e611d23109a, type: 3}
+  standardBlockBrokenSprites:
+  - {fileID: -6452159803162269696, guid: 89f4c4c5f504b43689c31e611d23109a, type: 3}
+  - {fileID: -7405288897733470557, guid: 89f4c4c5f504b43689c31e611d23109a, type: 3}

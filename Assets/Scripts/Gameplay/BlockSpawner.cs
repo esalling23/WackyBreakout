@@ -29,10 +29,7 @@ public class BlockSpawner : MonoBehaviour
         float blockHeight = firstBlockCollider.size.y;
         float blockWidth = firstBlockCollider.size.x;
         float leftoverSpace = 0;
-        print(blockHeight);
-        print(blockWidth);
-        print(ScreenUtils.ScreenRight);
-        print(ScreenUtils.ScreenLeft);
+        
         // Currently just spawn a level of 2 columns, 6 rows
         for (int i = 0; i < Mathf.Floor(ScreenUtils.ScreenWidth / blockWidth); i++)
         {
