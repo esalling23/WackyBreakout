@@ -8,9 +8,11 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     #region Fields
+    // Points support
+    protected int points = 50;
+
     // Sprite for half-life state
-    [SerializeField]
-    Sprite brokenBlock;
+    protected Sprite brokenBlock;
 
     // Health support
     int maxHealth;
@@ -23,7 +25,7 @@ public class Block : MonoBehaviour
     #region Methods
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         maxHealth = health;
     }
@@ -33,7 +35,7 @@ public class Block : MonoBehaviour
     /// Specifically will handle getting hit by the ball
     /// </summary>
     /// <param name="collision"></param>
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         // If the game object we collided w/ has a tag "Ball"
         if (collision.gameObject.tag == "Ball")
