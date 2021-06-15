@@ -18,7 +18,7 @@ public class Block : MonoBehaviour
     int maxHealth;
 
     [SerializeField]
-    int health = 100;
+    protected int health = 100;
 
     #endregion
 
@@ -49,7 +49,7 @@ public class Block : MonoBehaviour
                 Destroy(gameObject);
             }
             // If we're at the mid-way point in health (or over)
-            else if (maxHealth / health >= 2)
+            else if (maxHealth / health >= 2 && brokenBlock != null)
             {
                 // Render broken block instead 
                 GetComponent<SpriteRenderer>().sprite = brokenBlock;

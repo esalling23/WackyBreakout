@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -944,7 +944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -999,7 +999,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocks:
   - {fileID: 1337611944430951774, guid: 79619426127d5417e93d46f2d61db22f, type: 3}
-  size: 4
+  - {fileID: 3483376732108296655, guid: 5b8fd05722524437c9dc1bd8526b68a6, type: 3}
+  - {fileID: 1343856487768786107, guid: 1664c55dde6444301a14e6df1ce887ff, type: 3}
+  levelHeight: 4
+  topUiOffset: 0.75
 --- !u!4 &1375730561
 Transform:
   m_ObjectHideFlags: 0
