@@ -20,6 +20,8 @@ public class ConfigurationData
     static float ballSpawnTimeMin = 5;
     static float ballSpawnTimeMax = 10;
     static float standardBlockPoints = 50;
+    static float bonusBlockPoints = 150;
+    static float pickupBlockPoints = 10;
 
     #endregion
 
@@ -83,6 +85,18 @@ public class ConfigurationData
     {
         get { return standardBlockPoints; }
         set { standardBlockPoints = value; }
+    }
+
+    public float BonusBlockPoints
+    {
+        get { return bonusBlockPoints; }
+        set { bonusBlockPoints = value; }
+    }
+
+    public float PickupBlockPoints
+    {
+        get { return pickupBlockPoints; }
+        set { pickupBlockPoints = value; }
     }
 
     #endregion

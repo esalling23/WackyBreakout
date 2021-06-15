@@ -56,9 +56,28 @@ public static class ConfigurationUtils
         get { return configurationData.BallSpawnTimeMax; }
     }
 
+    /// <summary>
+    /// Gets the points for destroying a standard block
+    /// </summary>
     public static float StandardBlockPoints
     {
         get { return configurationData.StandardBlockPoints; }
+    }
+
+    /// <summary>
+    /// Gets the points for destroying a bonus block
+    /// </summary>
+    public static float BonusBlockPoints
+    {
+        get { return configurationData.BonusBlockPoints; }
+    }
+
+    /// <summary>
+    /// Gets the points for destroying a pickup block
+    /// </summary>
+    public static float PickupBlockPoints
+    {
+        get { return configurationData.PickupBlockPoints; }
     }
 
     #endregion
