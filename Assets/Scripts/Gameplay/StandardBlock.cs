@@ -9,7 +9,7 @@ public class StandardBlock : Block
     [SerializeField]
     Sprite[] standardBlockBrokenSprites;
 
-    void Start()
+    new void Start()
     {
         base.Start();
         points = (int)ConfigurationUtils.StandardBlockPoints;
@@ -18,6 +18,4 @@ public class StandardBlock : Block
         GetComponent<SpriteRenderer>().sprite = standardBlockSprites[ran];
         brokenBlock = standardBlockBrokenSprites[ran];
     }
-
-    
 }

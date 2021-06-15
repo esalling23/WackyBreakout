@@ -19,7 +19,7 @@ public class LevelBuilder : MonoBehaviour
     int levelHeight = 4;
 
     [SerializeField]
-    float topUiOffset = 0.75;
+    float topUiOffset = 0.75f;
 
     #endregion
 
