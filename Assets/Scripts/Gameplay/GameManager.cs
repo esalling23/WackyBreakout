@@ -69,6 +69,14 @@ public class GameManager : MonoBehaviour
         EventManager.StartListening(EventName.LoseBall, LostBall);
     }
 
+    void Update() 
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            MenuManager.GoToMenu(MenuName.Pause);
+        }
+    }
+
     private void LostBall(Dictionary<string, object> msg)
     {
         if (ballsLeft > 0)
