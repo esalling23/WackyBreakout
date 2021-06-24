@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Initializes the game
 /// </summary>
-public class GameInitializer : MonoBehaviour 
+public class GameInitializer : MonoBehaviour
 {
     /// <summary>
     /// Awake is called before Start
@@ -17,5 +17,8 @@ public class GameInitializer : MonoBehaviour
 
         // initialize configuration utils
         ConfigurationUtils.Initialize();
+
+        // initialize effect utils
+        EffectUtils.Initialize();
     }
 }

@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour
 
     [SerializeField]
     float startingAngle = 20f;
+    Vector2 normalForce;
 
     [SerializeField]
     int damage = 50;
@@ -35,14 +36,18 @@ public class Ball : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        normalForce = new Vector2(ConfigurationUtils.BallImpulseForce * Mathf.Cos(startingAngle),
+            ConfigurationUtils.BallImpulseForce * Mathf.Sin(startingAngle));
 
         EventManager.StartListening(EventName.GameOver, StopMoving);
+        EventManager.StartListening(EventName.SpeedupEffectActivated, MoveFast);
+        EventManager.StartListening(EventName.SpeedupEffectEnded, MoveNormal);
 
         // Get timer component
         deathTimer = gameObject.AddComponent<Timer>();
         startTimer = gameObject.AddComponent<Timer>();
 
-        // Set duration to ball life time & run 
+        // Set duration to ball life time & run
         deathTimer.Duration = ConfigurationUtils.BallDeathTime;
         deathTimer.Run();
 
@@ -50,15 +55,15 @@ public class Ball : MonoBehaviour
         startTimer.Run();
     }
 
-    void Update() 
+    void Update()
     {
-        if (startTimer.Finished) 
+        if (startTimer.Finished)
         {
             startTimer.Stop();
             GetMoving();
         }
         // If Ball has reached the end of it's lifetime, destroy it
-        if (deathTimer.Finished) 
+        if (deathTimer.Finished)
         {
             DestroyBall();
         }
@@ -68,20 +73,43 @@ public class Ball : MonoBehaviour
     /// Stops ball movement
     /// </summary>
     /// <param name="msg">null</param>
-    private void StopMoving(Dictionary<string, object> msg) 
+    private void StopMoving(Dictionary<string, object> msg)
     {
         body.velocity = Vector3.zero;
     }
 
     /// <summary>
+    /// Sets velocity to original
+    /// </summary>
+    /// <param name="msg">null</param>
+    private void MoveNormal(Dictionary<string, object> msg)
+    {
+        body.velocity = normalForce;
+    }
+
+    /// <summary>
+    /// Sets velocity to itself times speedup multiplier
+    /// </summary>
+    /// <param name="msg">null</param>
+    private void MoveFast(Dictionary<string, object> msg)
+    {
+        Vector2 vel = body.velocity.normalized;
+
+        body.velocity = vel * EffectUtils.SpeedupFactor;
+    }
+
+    /// <summary>
     /// Adds force to the ball
     /// </summary>
-    private void GetMoving() 
+    private void GetMoving()
     {
-        Vector2 force = new Vector2(ConfigurationUtils.BallImpulseForce * Mathf.Cos(startingAngle),
-            ConfigurationUtils.BallImpulseForce * Mathf.Sin(startingAngle));
+        body.AddForce(normalForce, ForceMode2D.Force);
 
-        body.AddForce(force, ForceMode2D.Force);
+        // If the speedup effect is active, have the ball start fast
+        if (EffectUtils.SpeedupActive)
+        {
+            MoveFast(null);
+        }
     }
 
     /// <summary>
@@ -93,11 +121,11 @@ public class Ball : MonoBehaviour
         // Set the velocity to the current speed (magnitude) times the new direction
         body.velocity = body.velocity.magnitude * direction;
     }
-    
+
     /// <summary>
     /// If the ball leaves the screen, destroy it
     /// </summary>
-    private void OnBecameInvisible() 
+    private void OnBecameInvisible()
     {
         if (transform.position.y <= ScreenUtils.ScreenBottom) {
             // Destroy ball when it leaves the screen view
@@ -116,8 +144,9 @@ public class Ball : MonoBehaviour
 
         // Stop listening for Game Over event
         EventManager.StopListening(EventName.GameOver, StopMoving);
+        EventManager.StopListening(EventName.SpeedupEffectActivated, MoveFast);
 
-        if (!GameManager.instance.GameOver) 
+        if (!GameManager.instance.GameOver)
         {
             // Spawn a new ball before death
             Camera.main.GetComponent<BallSpawner>().SpawnBallWithChecks();
@@ -137,7 +166,7 @@ public class Ball : MonoBehaviour
     /// Left for learning purposes - this was originally written to prevent
     /// up-and-down forever bouncing w/o direction
     /// The `OnCollisionEnter2D` method in `Paddle.cs` was provided for the
-    /// assignment for the more specific purpose as described in it's comments. 
+    /// assignment for the more specific purpose as described in it's comments.
     //void OnCollisionEnter2D(Collision2D collision)
     //{
     //    print("collided");
@@ -153,5 +182,5 @@ public class Ball : MonoBehaviour
     //}
 
     #endregion
-    
+
 }

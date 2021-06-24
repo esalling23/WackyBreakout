@@ -22,6 +22,8 @@ public class ConfigurationData
     static float standardBlockPoints = 50;
     static float bonusBlockPoints = 150;
     static float pickupBlockPoints = 10;
+    static float freezerEffectTime = 2;
+    static float speedupEffectTime = 4;
 
     #endregion
 
@@ -71,7 +73,7 @@ public class ConfigurationData
     /// Gets the maximum time between ball spawns
     /// </summary>
     /// <value>ball spawn time</value>
-    public float BallSpawnTimeMax 
+    public float BallSpawnTimeMax
     {
         get { return ballSpawnTimeMax; }
         set { ballSpawnTimeMax = value; }
@@ -87,16 +89,44 @@ public class ConfigurationData
         set { standardBlockPoints = value; }
     }
 
+    /// <summary>
+    /// Point value for bonus blocks
+    /// </summary>
+    /// <value>point value</value>
     public float BonusBlockPoints
     {
         get { return bonusBlockPoints; }
         set { bonusBlockPoints = value; }
     }
 
+    /// <summary>
+    /// Point value for pickup blocks
+    /// </summary>
+    /// <value>point value</value>
     public float PickupBlockPoints
     {
         get { return pickupBlockPoints; }
         set { pickupBlockPoints = value; }
+    }
+
+    /// <summary>
+    /// Length in seconds of the freezer block effect
+    /// </summary>
+    /// <value>time in seconds</value>
+    public float FreezerEffectTime
+    {
+        get { return freezerEffectTime; }
+        set { freezerEffectTime = value; }
+    }
+
+    /// <summary>
+    /// Length in seconds of the speedup block effect
+    /// </summary>
+    /// <value>time in seconds</value>
+    public float SpeedupEffectTime
+    {
+        get { return speedupEffectTime; }
+        set { speedupEffectTime = value; }
     }
 
     #endregion
@@ -140,7 +170,7 @@ public class ConfigurationData
         {
             // Get the property setter on this class & set the value
             this.GetType().GetProperty(names[i]).SetValue(this, float.Parse(values[i]));
-            Debug.Log(this.GetType().GetProperty(names[i]).GetValue(this));
+            // Debug.Log(this.GetType().GetProperty(names[i]).GetValue(this));
         }
     }
 

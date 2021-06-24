@@ -1,2 +1,2 @@
-BallImpulseForce,PaddleMoveUnitsPerSecond,BallDeathTime,BallSpawnTimeMin,BallSpawnTimeMax,StandardBlockPoints,BonusBlockPoints,PickupBlockPoints
-150,20,15,5,10,50,150,10
+BallImpulseForce,PaddleMoveUnitsPerSecond,BallDeathTime,BallSpawnTimeMin,BallSpawnTimeMax,StandardBlockPoints,BonusBlockPoints,PickupBlockPoints,FreezerEffectTime,SpeedupEffectTime
+150,20,15,5,10,50,150,10,2,4

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +9,17 @@ using UnityEngine;
 public class Paddle : MonoBehaviour
 {
     #region Fields
+    // Movement support
     Rigidbody2D body;
     Vector3 position;
     float horizontalInput;
     float halfColliderWidth;
     const float BounceAngleHalfRange = 60f * Mathf.Deg2Rad;
+
+    // Freezer effect support
+    Timer freezeTimer;
+    bool isFrozen = false;
+
 
     #endregion
 
@@ -21,11 +28,15 @@ public class Paddle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        isFrozen = false;
         body = GetComponent<Rigidbody2D>();
 
         // Gets the width of the box collider component
         halfColliderWidth = GetComponent<BoxCollider2D>().size.x / 2;
+
+        freezeTimer = gameObject.AddComponent<Timer>();
+
+        EventManager.StartListening(EventName.FreezerEffectActivated, Freeze);
     }
 
     // Update is called once per frame
@@ -33,7 +44,7 @@ public class Paddle : MonoBehaviour
     {
         //  Horizontal axis is right/left arrow or a + d keys
         horizontalInput = Input.GetAxis("Horizontal");
-        if (!GameManager.instance.GameOver && horizontalInput != 0) 
+        if (!GameManager.instance.GameOver && !isFrozen && horizontalInput != 0)
         {
             position = transform.position;
             position.x += horizontalInput * ConfigurationUtils.PaddleMoveUnitsPerSecond * Time.fixedDeltaTime;
@@ -43,6 +54,29 @@ public class Paddle : MonoBehaviour
 
             // Move paddle
             body.MovePosition((Vector2)position);
+        }
+
+        if (freezeTimer.Finished)
+        {
+            isFrozen = false;
+            freezeTimer.Stop();
+        }
+    }
+
+    private void Freeze(Dictionary<string, object> msg)
+    {
+        isFrozen = true;
+
+        float time = (float) msg["time"];
+
+        if (freezeTimer.Running)
+        {
+            freezeTimer.AddTime(time);
+        }
+        else
+        {
+            freezeTimer.Duration = time;
+            freezeTimer.Run();
         }
     }
 
@@ -61,7 +95,7 @@ public class Paddle : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks for a top collision vs on the side 
+    /// Checks for a top collision vs on the side
     /// </summary>
     /// <param name="coll"></param>
     /// <returns></returns>
@@ -102,6 +136,6 @@ public class Paddle : MonoBehaviour
             ballScript.SetDirection(direction);
         }
     }
-    
+
     #endregion
 }

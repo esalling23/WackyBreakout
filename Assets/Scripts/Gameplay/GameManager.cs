@@ -62,11 +62,12 @@ public class GameManager : MonoBehaviour
     void Init()
     {
         points = 0;
-        ballsLeft = 3;
+        ballsLeft = 50;
         gameOver = false;
 
         EventManager.StartListening(EventName.AddPoints, UpdatePoints);
         EventManager.StartListening(EventName.LoseBall, LostBall);
+        
     }
 
     void Update() 

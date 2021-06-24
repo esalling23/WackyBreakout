@@ -7,7 +7,6 @@ using UnityEngine;
 /// </summary>
 public static class ConfigurationUtils
 {
-
     #region Fields
 
     static ConfigurationData configurationData;
@@ -43,7 +42,7 @@ public static class ConfigurationUtils
     /// <summary>
     /// Gets the min length of time between ball spawns
     /// </summary>
-    public static float BallSpawnTimeMin 
+    public static float BallSpawnTimeMin
     {
         get { return configurationData.BallSpawnTimeMin; }
     }
@@ -80,8 +79,24 @@ public static class ConfigurationUtils
         get { return configurationData.PickupBlockPoints; }
     }
 
+    /// <summary>
+    /// Gets the length of time the freezer effect lasts
+    /// </summary>
+    public static float FreezerEffectTime
+    {
+        get { return configurationData.FreezerEffectTime; }
+    }
+
+    /// <summary>
+    /// Gets the length of time the speedup effect lasts
+    /// </summary>
+    public static float SpeedupEffectTime
+    {
+        get { return configurationData.SpeedupEffectTime; }
+    }
+
     #endregion
-    
+
     /// <summary>
     /// Initializes the configuration utils
     /// </summary>

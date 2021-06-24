@@ -13,6 +13,7 @@ public class Block : MonoBehaviour
 
     // Sprite for half-life state
     protected Sprite brokenBlock;
+    protected static SpriteRenderer spriteRenderer;
 
     // Health support
     int maxHealth;
@@ -28,6 +29,7 @@ public class Block : MonoBehaviour
     protected void Start()
     {
         maxHealth = health;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     /// <summary>

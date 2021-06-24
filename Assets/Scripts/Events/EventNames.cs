@@ -4,5 +4,8 @@ public enum EventName
 {
     AddPoints,
     LoseBall,
-    GameOver
+    GameOver,
+    FreezerEffectActivated,
+    SpeedupEffectActivated,
+    SpeedupEffectEnded
 }
