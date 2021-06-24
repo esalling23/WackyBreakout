@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public static class MenuManager
 {
-    public static void GoToMenu(MenuName menu) 
+    public static void GoToMenu(MenuName menu)
     {
-        switch (menu) 
+        switch (menu)
         {
             case MenuName.Main:
                 // Switch to Main Menu scene
@@ -17,6 +17,11 @@ public static class MenuManager
             case MenuName.Pause:
                 // Instantiate Pause Menu
                 Object.Instantiate(Resources.Load("PauseMenu"));
+            break;
+
+            case MenuName.Help:
+
+                SceneManager.LoadScene("HelpMenu");
             break;
         }
     }

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MenuName 
+public enum MenuName
 {
     Main,
-    Pause
+    Pause,
+    Help
 }
